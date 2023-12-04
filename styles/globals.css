@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap');
+
+@font-face {
+    font-family: 'Integral CF';
+    src: url(/assets/font/integralcf.ttf) format("truetype");
+ }
+
+
+*, body{
+    font-family: 'Lexend', sans-serif;
+    background-color: #000000;
+}
+
+.font-integral{
+  font-family: 'Integral CF';
+}
+.btn-explore{
+    width: 134px;
+    height: 48px;
+    color: #E4E4E6;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-image: linear-gradient(#0D0D0D, #0D0D0D), 
+    radial-gradient(85.42% 238.45% at 59.7% 50%, #EB3A4A 0%, rgba(235, 58, 74, 0) 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.card-border{
+  border: 1px solid #343434;
+}
+
+
+.btn-intro{
+    width: 194px;
+    height: 48px;
+    
+font-size: 14px;
+font-weight: 400;
+    border: 1px solid transparent;
+    border-radius: 360px;
+    background-image: 
+    linear-gradient(0deg, #080808, #080808),
+    linear-gradient(93.23deg, #868686 -1.74%, rgba(67, 67, 67, 0.152) 78.61%);
+    
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+.btn-border{
+  /* background-image:  */
+  /* linear-gradient(0deg, #080808, #080808),
+  linear-gradient(93.23deg, #868686 -1.74%, rgba(67, 67, 67, 0.152) 78.61%); */
+
+
+  background: linear-gradient(0deg, #080808, #080808),
+linear-gradient(0deg, rgba(52, 52, 52, 0.5), rgba(52, 52, 52, 0.5)),
+linear-gradient(270deg, #868686 -15.29%, rgba(0, 0, 0, 0) 57.65%);
+
+
+
+  background-origin: border-box;
+    background-clip: content-box, border-box;
+    border: 1px solid transparent;
+
+  }
+
+.btn-lock{
+    width: 48px;
+    height: 48px;
+    
+text-align: center;
+
+display: flex;
+justify-content: center;
+align-items: center;
+    border: 1px solid transparent;
+    border-radius: 360px;
+    background-image: 
+    linear-gradient(0deg, #080808, #080808),
+    linear-gradient(93.23deg, #868686 -1.74%, rgba(67, 67, 67, 0.152) 78.61%);
+    
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+
+.btn-discord{
+    width: 180px;
+height: 56px;
+padding: 8px, 16px, 8px, 16px;
+background: #EB3A4A;
+
+border-radius: 8px;
+
+
+}
+
+.scrolldown{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.scrolldown img{
+    transition: all .25s ease;
+  }
+  .scrolldown p{
+    transition: all .25s ease;
+    margin: 3px;
+  }
+  .scrolldown:hover p{
+    font-size: 1rem;
+  }
+  
+  
+  .scrolldown:hover img{
+    width: 30px !important;
+  }
+  
+.text-gradient{
+    background: radial-gradient(circle at center,#eb3a4a,#2b2b2b);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.heading{
+    font-family: 'Integral CF' !important;
+    font-weight: 400;
+    font-size: 4rem;
+    line-height: 64px;
+    word-break: break-word;
+    margin-right: 10px;
+}
+
+
+
+
+
+.overlappingImages {
+    width: 100%; /* Set your desired width */
+    height: 100%; /* Set your desired height */
+    position: relative; /* Position relative for absolute positioning of background images */
+  }
+  
+  .overlappingImages::before,
+  .overlappingImages::after {
+    content: "";
+    position: absolute;
+    top: -150px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    /* background-size: auto; */
+  }
+  
+  .overlappingImages::before {
+    background-image: url('/bubbles.png');
+    z-index: 1; 
+    background-position: top center; 
+    background-repeat: no-repeat;
+
+  }
+  
+  .overlappingImages::after {
+    background-image: url('/shapes.png'); 
+
+    background-repeat: no-repeat;
+    z-index: 2; 
+    background-position: 50% 60%;
+  }
+  
+  .overlappingImages {
+    background-image: url('/x.png'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: contain;
+    /* background-image: url('/x.png'), url('/shapes.png'), url('/bubbles.png');
+    background-size: contain, auto, auto;
+    background-position: center, 50% 60%, top center;
+    background-repeat: no-repeat, no-repeat, no-repeat; */
+  }
+
+  
+
+
+
+@media (min-width: 768px){
+.heading::before{
+    content: "Game-changing infrastructure";
+
+}
+
+}
+@media (max-width: 768px){
+.heading::before{
+    content: "Empowering players & fans";
+}
+.heading{
+line-height: 2.5rem;
+font-size: 2.5rem;
+}
+
+.intro-txt{
+    font-size: 12px !important;
+}
+.btn-intro{
+    width: 150px;
+}
+}
