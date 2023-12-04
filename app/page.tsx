@@ -97,7 +97,7 @@ const Index = () => {
          
          <div className="row mt-5" style={{color:"#E4E4E6"}}>
             <div className="col-md-6 col-xl-5 col-lg-6 flex flex-col align-middle" style={{zIndex:9999999, position:"relative", background:"transparent", paddingBottom:"110px"}}>
-            <motion.p initial={{ x: -100, opacity: 0 }} whileInView={{ opacity: 1, x: 0, transition: { duration: 1 } }}  style={{color:"#EB3A4A", fontWeight:500, fontSize:12, textTransform:"uppercase"}}>Lorem ipsum dolor</motion.p>
+            <motion.p initial={{ x: -100, opacity: 0 }} whileInView={{opacity: 'inherit', x: 0, transition: { duration: 1 } }}  style={{color:"#EB3A4A", fontWeight:500, fontSize:12, textTransform:"uppercase"}}>Lorem ipsum dolor</motion.p>
 
                 <motion.p initial={{ x:-100, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: .3 }, x:0 }} className="mt-4 heading text-[#E4E4E7] "></motion.p>
 
