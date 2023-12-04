@@ -245,7 +245,7 @@ const Index = () => {
                       if (index === prev) return -1
                       else return index
                     })
-                  }} className={index === activeIndex ? "btn_bg button cursor-pointer special-btn reverse flex btn-border items-center relative gap-3 rounded-full " : `button cursor-pointer special-btn reverse flex btn-border items-center relative gap-3 rounded-full `} style={index === activeIndex ? { background: '#eb3a4a80 !important', border: '2px solid #EB3A4A', zIndex: '99' } : {border:'1px solid '}}>
+                  }} className={index === activeIndex ? "btn_bg button cursor-pointer special-btn reverse flex btn-border items-center relative gap-3 rounded-full " : `button cursor-pointer special-btn reverse flex btn-border items-center relative gap-3 rounded-full `} style={index === activeIndex ? { background: '#eb3a4a80 !important', border: '1px solid #EB3A4A', zIndex: '99' } : {border:'1px solid '}}>
                   <span className="p-[5px] w-[100%] flex items-center bg-transparent gap-3">
 
                     <Image
