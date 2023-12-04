@@ -5,7 +5,7 @@ import CustomButton from "@/components/Buttons";
 import Link from "next/link";
 import intro from "public/intro.png"
 import {motion} from 'framer-motion'
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
 const userNames = [
@@ -39,6 +39,22 @@ const userNames = [
 const Index = () => {
 
   const [activeIndex, setActiveIndex] = useState(-1)
+
+  const targetRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (targetRef.current && !targetRef.current.contains(event.target)) {
+      setActiveIndex(-1);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   function ScrollEffect(e: any): void {
     e.preventDefault();
@@ -80,14 +96,14 @@ const Index = () => {
         <section id="hero" className="w-[90%] mx-auto">
          
          <div className="row mt-5" style={{color:"#E4E4E6"}}>
-            <div className="col-md-6 col-xl-5 col-lg-6 flex flex-col align-middle" style={{zIndex:9999999, position:"relative", background:"transparent"}}>
+            <div className="col-md-6 col-xl-5 col-lg-6 flex flex-col align-middle" style={{zIndex:9999999, position:"relative", background:"transparent", paddingBottom:"110px"}}>
             <motion.p initial={{ x: -100, opacity: 0 }} whileInView={{ opacity: 1, x: 0, transition: { duration: 1 } }}  style={{color:"#EB3A4A", fontWeight:500, fontSize:12, textTransform:"uppercase"}}>Lorem ipsum dolor</motion.p>
 
                 <motion.p initial={{ x:-100, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: .3 }, x:0 }} className="mt-4 heading text-[#E4E4E7] "></motion.p>
 
-                <motion.p initial={{ x:-100, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: .9 }, x:0 }} className="col-xl-8 mt-4 text-[#CACACE]" style={{fontWeight:300, fontSize:14, lineHeight:"20px", background:"transparent"}}>A decentralised, non-custodial social graph, empowering players to take full ownership of their gaming identities and enabling developers to build next-gen applications. </motion.p>
+                <motion.p initial={{ x:-100, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: .9 }, x:0 }} className="col-xl-8 mt-4 text-[#CACACE] the_text" style={{fontWeight:300, fontSize:14, lineHeight:"20px", background:"transparent"}}></motion.p>
 
-                <motion.button initial={{ x:-100, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: 1.6 }, x:0 }}  className="btn-discord mt-8">Join Discord</motion.button>
+                <motion.button initial={{ x:-100, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: 1.1 }, x:0 }}  className="btn-discord mt-8">Join Discord</motion.button>
             </div>
             
             
@@ -95,7 +111,7 @@ const Index = () => {
 
 <div className="mt-16" style={{width:"100%", display:"flex", justifyContent:"center", background:"transparent"}}>
 <motion.img
-                  initial={{ y:50, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: 0.1 }, y:0 }} src="/avatar.png" alt="avatar" width={100} height={100} style={{borderRadius:"50%", background:"transparent"}} />
+                  initial={{ y:50, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: 0.1 }, y:0 }} src="/avatar.png" alt="avatar" width={100} height={100} style={{borderRadius:"50%", background:"transparent", zIndex:99}} />
 </div>
   <div className="mt-3" style={{width:"100%", display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center", background:"transparent"}}>
 
@@ -108,11 +124,11 @@ const Index = () => {
 
 <div className="flex flex-col justify-center w-[100%] items-center justify-items-center mt-6" style={{ background:"transparent", paddingBottom:50}}>
 
-<motion.button
-                  initial={{ y:50, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: 0.8 }, y:0 }} className='btn-lock mx-2 mb-3'>
-<Image src='/group.svg' width={20} height={20} 
-            alt="lock" />
-</motion.button>
+<motion.div style={{zIndex:999}} className='mx-2 mb-3' initial={{ y:50, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: 0.7 }, y:0 }} >
+      
+            <CustomButton style={{width:"48px", height:"48px", display:"flex", justifyContent:"center", alignItems:"center"}} text={<Image src='/group.svg' width={20} height={20} 
+  alt="lock" />} />
+ </motion.div>
 
             {/* <CustomButton text={} /> */}
             <motion.div className='bg-transparent'
@@ -158,7 +174,7 @@ const Index = () => {
 
 
 
-                                                  <section id='content' style={{position:'relative'}} className='w-[90%] pt-4 mx-auto min-h-screen relative bg-transparent'>
+                                                  <section  id='content' style={{position:'relative'}} className='w-[90%] pt-4 mx-auto min-h-screen relative bg-transparent'>
         <div className='mb-[8vh] bg-transparent' style={{position:'relative'}}>
         <Image
           className='absolute z-[-1] left-[-7%] bg-transparent top-0 pointer-events-none'
@@ -180,8 +196,8 @@ const Index = () => {
           <h1 className={`font-integral uppercase md:text-[64px] text-[#E4E4E7] bg-transparent text-[40px] leading-[1] break-words mx-auto md:max-w-[750px] text-center`}>The value network of gaming</h1>
           <p className={`text-[14px] leading-[20px] bg-transparent text-[#CACACE] mt-[3vh] mx-auto max-w-[500px] text-center`}>The fundamental protocol that allows anyone to create gaming applications built on top of player identities.</p>
         </motion.div>
-        <div className='flex items-center bg-transparent justify-center gap-5 mt-[6vh] flex-wrap' style={{position:'relative', zIndex:99999}}>
-          <motion.div initial={{ x: -250, opacity:0 }} whileInView={{ x: 0, opacity:1, transition:{duration:1} }} className='rounded-[16px] hover:scale-105 transition-all duration-[350] ease-linear text-white bg-[#090909cc]  card-border sm:min-w-[387px] min-w-[100%] min-h-[244px] px-[20px] py-[15px]' style={{position:'relative', zIndex:99999}}>
+        <div className='flex items-center bg-transparent justify-center gap-5 mt-[6vh] flex-wrap' style={{position:'relative', zIndex:99999, padding:'20px'}}>
+          <motion.div initial={{ x: -250, opacity:0 }} whileInView={{ x: 0, opacity:1, transition:{duration:1} }} className='rounded-[16px] hover:scale-105 transition-all duration-[350] ease-linear text-white bg-[#090909cc]  card-border sm:min-w-[387px] min-w-[100%] min-h-[244px]' style={{position:'relative', zIndex:99999, padding:"20px"}}>
             <h2 className={` bg-transparent text-[24px] text-[#E4E4E7]`}>Gaming social layer</h2>
             <h2 className={`text-[14px] leading-[20px] text-[#CACACE] mt-[1vh] bg-transparent`}>Gamers take control of their data.</h2>
             <Image
@@ -193,7 +209,7 @@ const Index = () => {
               style={{objectFit:"contain"}}
             />
           </motion.div>
-          <motion.div  style={{position:'relative', zIndex:99999}} initial={{ x: 250, opacity:0 }} whileInView={{ x: 0, opacity:1, transition:{duration:1} }} className='rounded-[16px] hover:scale-105 transition-all duration-[350] ease-linear text-white bg-[#090909cc] card-border sm:min-w-[387px] min-w-[100%] min-h-[244px] px-[20px] py-[15px]'>
+          <motion.div  style={{position:'relative', zIndex:99999, padding:'20px'}} initial={{ x: 250, opacity:0 }} whileInView={{ x: 0, opacity:1, transition:{duration:1} }} className='rounded-[16px] hover:scale-105 transition-all duration-[350] ease-linear text-white bg-[#090909cc] card-border sm:min-w-[387px] min-w-[100%] min-h-[244px]'>
             <h2 className={`text-[24px]  bg-transparent text-[#E4E4E7]`}>Gaming social layer</h2>
             <h2 className={`text-[14px]  bg-transparent text-[#CACACE] leading-[20px] text-secondary mt-[1vh]`}>Gamers take control of their data.</h2>
             <Image
@@ -221,14 +237,15 @@ const Index = () => {
               userNames && userNames.length !== 0 && userNames.map((user, index) => (
                 <motion.div
                 key={index}
-                initial={{ x:50, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: 0.2 * index+1 }, x:0 }}
+                initial={{ x:50, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: 0.2 * index }, x:0 }}
                   className={`relative bg-transparent`}>
-                  <div onClick={() => {
+                  <div           ref={index === activeIndex ? targetRef : null}
+ onClick={() => {
                     setActiveIndex((prev) => {
                       if (index === prev) return -1
                       else return index
                     })
-                  }} className={`button cursor-pointer reverse flex btn-border items-center relative gap-3 rounded-full bg-transparent`} style={index === activeIndex ? { background: '#eb3a4a80', border: '2px solid #EB3A4A', zIndex: '99' } : {border:'1px solid transparent'}}>
+                  }} className={index === activeIndex ? "btn_bg button cursor-pointer special-btn reverse flex btn-border items-center relative gap-3 rounded-full " : `button cursor-pointer special-btn reverse flex btn-border items-center relative gap-3 rounded-full `} style={index === activeIndex ? { background: '#eb3a4a80 !important', border: '2px solid #EB3A4A', zIndex: '99' } : {border:'1px solid '}}>
                   <span className="p-[5px] w-[100%] flex items-center bg-transparent gap-3">
 
                     <Image
@@ -239,8 +256,9 @@ const Index = () => {
                       width={64}
                       style={{objectFit:"cover"}}
                       />
-                    <p className="text-[16px] m-0" style={index === activeIndex ? { color: '#EB3A4A', background: 'transparent' } : {background:"transparent", backgroundImage: `linear-gradient(90deg, #ABABAB 0%, #2D2D2D 102.73%),
-                        linear-gradient(88.95deg, rgba(255, 255, 255, 0) 80.46%, #FFFFFF 112.56%)`,
+                    <p className="text-[16px] m-0" style={index === activeIndex ? { color: '#EB3A4A', background: 'transparent' } : {background:"transparent", backgroundImage: `linear-gradient(90deg, #1A1A1A 0%, #ABABAB 102.73%),
+                   linear-gradient(88.95deg, #FFFFFF 80.46%, rgba(255, 255, 255, 0) 112.56%)`
+,
       backgroundClip: 'text',
       WebkitBackgroundClip: 'text',
       color: 'transparent',}}>{user.name}</p>
@@ -253,15 +271,15 @@ const Index = () => {
                         <pre className={`sm:text-[14px] bg-transparent text-[8.7px] mt-[10vh] text-[#95959D] `}>
                           {`
   `}<span className='text-white bg-transparent'>{`player_metadata = {`}</span>{`
-    "player_name"`}<span className='text-white bg-transparent'>:</span>{` "JohnDoe123"`}<span className='text-white'>{`,`}</span>{`
-    "gaming_platform"`}<span className='text-white bg-transparent '>:</span>{` "PC"`}<span className='text-white'>{`,`}</span>{`
-    "game_level"`}<span className='text-white bg-transparent'>:</span>{` `}<span className='text-[#EB3A4A]'>25</span>{`,
+    "player_name"`}<span className='text-white bg-transparent'>:</span>{` "JohnDoe123"`}<span className='text-white  bg-transparent'>{`,`}</span>{`
+    "gaming_platform"`}<span className='text-white bg-transparent '>:</span>{` "PC"`}<span className='text-white  bg-transparent'>{`,`}</span>{`
+    "game_level"`}<span className='text-white bg-transparent'>:</span>{` `}<span className='text-[#EB3A4A]  bg-transparent'>25</span>{`,
     "achievements"`}<span className='text-white bg-transparent'>{`: [`}</span>{`"Master of the Arena", "Legendary Explorer"`}<span className='text-white bg-transparent'>{`],`}</span>{`
     "total_score": `}<span className='text-[#EB3A4A] bg-transparent'>2000</span>{`,
-    "preferred_game_mode"`}<span className='text-white bg-transparent'>:</span>{` "Team Deathmatch"`}<span className='text-white'>{`,`}</span>{`
+    "preferred_game_mode"`}<span className='text-white bg-transparent'>:</span>{` "Team Deathmatch"`}<span className='text-white  bg-transparent'>{`,`}</span>{`
     "collected items"`}<span className='text-white bg-transparent'>{`: {`}</span>{`
-    "weapon"`}<span className='text-white bg-transparent'>:</span>{` "Legendary Sword"`}<span className='text-white'>{`,`}</span>{`
-    "armor"`}<span className='text-white bg-transparent'>:</span>{` "Epic Plate Armor"`}<span className='text-white'>{`,`}</span>{`
+    "weapon"`}<span className='text-white bg-transparent'>:</span>{` "Legendary Sword"`}<span className='text-white  bg-transparent'>{`,`}</span>{`
+    "armor"`}<span className='text-white bg-transparent'>:</span>{` "Epic Plate Armor"`}<span className='text-white  bg-transparent'>{`,`}</span>{`
     "pet"`}<span className='text-white bg-transparent'>:</span>{` "Fire Dragon"
     `}<span className='text-white bg-transparent'>{`}`}</span>{`
   `}<span className='text-white bg-transparent'>{`}`}</span>{`
