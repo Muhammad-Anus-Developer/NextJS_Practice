@@ -18,6 +18,12 @@ body{
   overflow-x: hidden;
 
 }
+
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 .font-integral{
   font-family: 'Integral CF';
 }
