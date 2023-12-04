@@ -57,7 +57,7 @@ const Index = () => {
       <main className="min-w-full">
 
 
-        <div className="pointer-events-none md:block hidden"><Image alt="Upper Frame" loading="lazy" width="923" height="644.19" decoding="async" data-nimg="1" className="pointer-events-none" style={{ color: "transparent" }} src={intro} /></div>
+      <motion.div initial={{ x:-100, opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1 ,delay: .1 }, x:0 }}  className="pointer-events-none md:block hidden"><Image alt="Upper Frame" loading="lazy" width="923" height="644.19" decoding="async" data-nimg="1" className="pointer-events-none" style={{ color: "transparent" }} src={intro} /></motion.div>
 
 
         <div className="md:hidden flex items-center justify-between p-[10px]"><a href="/"><motion.img
